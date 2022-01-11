@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+#Dataset kaggle link : https://www.kaggle.com/iamsouravbanerjee/nifty50-stocks-dataset
 
 df = pd.read_csv('dataset.csv')
 df =  df[["52w H","High","365 d % chng","% Chng"]]
