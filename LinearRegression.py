@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#Dataset kaggle link : https://www.kaggle.com/iamsouravbanerjee/nifty50-stocks-dataset
+#Dataset kaggle link : https://www.kaggle.com/spscientist/students-performance-in-exams?select=StudentsPerformance.csv
 
 df = pd.read_csv('dataset.csv')
-df =  df[["52w H","High","365 d % chng","% Chng"]]
+df = df[["reading score","writing score"]]
 
 
 def pearsonCorr(x,y):
@@ -25,13 +25,15 @@ def slope(x,y):
     return m,intercept
 
 
-testDf = pd.DataFrame(zip([3,5,4,6,2],[3,4,5,2,6]))
-m,intercept = slope(df["% Chng"],df["365 d % chng"])
-plt.scatter(df["% Chng"],df["365 d % chng"])
-plt.plot(df["% Chng"],intercept+m*df["% Chng"])
-plt.scatter(df["% Chng"].mean(),df["365 d % chng"].mean())
+rel = pearsonCorr(df["reading score"],df["writing score"])
+print("Pearson coefficient: ",rel)
+print("Quality: ",rel**2)
+testDf = pd.DataFrame(zip([3,5,4,6,2],[3,4,5,2,6])) #ignore, was just testing
+m,intercept = slope(df["reading score"],df["writing score"])
+plt.scatter(df["reading score"],df["writing score"])
+plt.plot(df["reading score"],intercept+m*df["reading score"])
+plt.scatter(df["reading score"].mean(),df["writing score"].mean())
 plt.show()
-
 
 
 
